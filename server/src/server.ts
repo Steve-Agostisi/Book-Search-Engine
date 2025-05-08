@@ -13,7 +13,9 @@ const server = new ApolloServer({
 });
 
 const startApolloServer = async () => {
-  await server.start();
+  await server.start(); 
+  const __filename=fileURLToPath(import.meta.url); 
+  const __dirname=path.dirname(__filename); 
   
   // Connect to MongoDB using the environment variable
   const mongoURI = process.env.MONGODB_URI;
@@ -42,7 +44,16 @@ const startApolloServer = async () => {
       const context = await authenticateToken({ req });
       return context;
     }
-  }));
+  })); 
+
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../../client/dist')));
+
+    // TODO: Uncomment this code once you have built out queries and mutations in the client folder
+    app.get('*', (_req, res) => {
+    res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+    });
+  }
 
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
