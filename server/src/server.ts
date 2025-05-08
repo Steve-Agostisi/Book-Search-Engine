@@ -5,7 +5,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from './schemas/index.js';
 import { authenticateToken } from './services/auth.js';
 import path from 'path'; 
-import {fileURlToPath} from 'url'; 
+import { fileURLToPath } from 'url'; 
 
 
 const server = new ApolloServer({
