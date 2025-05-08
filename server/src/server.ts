@@ -4,7 +4,8 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from './schemas/index.js';
 import { authenticateToken } from './services/auth.js';
-import cors from 'cors'; 
+import path from 'path'; 
+import {fileURlToPath} from 'url'; 
 
 
 const server = new ApolloServer({
@@ -35,7 +36,7 @@ const startApolloServer = async () => {
   const PORT = process.env.PORT || 3001;
   const app = express();
 
-  app.use(cors());
+
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
