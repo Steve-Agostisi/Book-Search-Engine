@@ -6,7 +6,8 @@ import { typeDefs, resolvers } from './schemas/index.js';
 import { authenticateToken } from './services/auth.js';
 import path from 'path'; 
 import { fileURLToPath } from 'url'; 
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 const server = new ApolloServer({
   typeDefs,
