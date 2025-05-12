@@ -35,7 +35,9 @@ const startApolloServer = async () => {
   }
 
   const PORT = process.env.PORT || 3001;
-  const app = express();
+  const app = express(); 
+
+  console.log('MONGODB_URI:', process.env.MONGODB_URI);
 
 
   app.use(express.urlencoded({ extended: false }));
